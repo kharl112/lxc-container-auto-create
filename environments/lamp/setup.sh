@@ -3,6 +3,10 @@
 apt update
 apt upgrade
 
+echo ===============================
+echo ====== SETTING UP LAMP ========
+echo ===============================
+
 #NOTE: make sure dump all of your data before install mariadb again
 apt install apache2 mariadb-server mariadb-client
 
