@@ -22,7 +22,7 @@ CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs$CONTAINER_HOME
 lxc-stop $CONTAINER_NAME || true
 lxc-destroy $CONTAINER_NAME || true
 
-lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r lunar -a amd64
+lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r jammy -a amd64
 lxc-start $CONTAINER_NAME
 
 mkdir -p $CONTAINER_DIR 
