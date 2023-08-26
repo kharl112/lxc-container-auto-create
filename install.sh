@@ -10,7 +10,7 @@ echo starting time: `date`
 #generate container name 
 ADJECTIVE=`shuf adjectives.txt | head -n 1`
 ANIMAL=`shuf animals.txt | head -n 1`
-CONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
+ONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
 
 echo CONTAINER-NAME: $CONTAINER_NAME
 
@@ -31,14 +31,19 @@ cp $PWD $CONTAINER_DIR -R
 #execute setup
 lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PROJECT_DIR/setup.sh
 
-if [ -z "$2" ]
-  then
-    echo "No directory supplied for project or executable"
+EDIR=environments
+OPTIONS=(`find $PWD/$EDIR/ -type d -exec basename {} \; | grep -v $EDIR` 'NONE')
+echo SELECT TECH STACK:
+select opt in "${OPTIONS[@]}"
+do
+  if [[ "$opt" == "NONE" ]]; then
+    echo No techstack selected
+    break
   else
-    echo "executing setup.sh from your supplied directory"
-    PR=`echo $2 | grep -o "\/[A-Z|a-z|0-9|\-]*" | tail -n 1`
-    cp $2 $CONTAINER_DIR -R
-    lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PR/setup.sh
-fi
+    echo selected: $opt
+    lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PROJECT_DIR/$EDIR/$opt/setup.sh
+    break
+  fi
+done
 
 echo end time: `date`
