@@ -10,7 +10,7 @@ echo starting time: `date`
 #generate container name 
 ADJECTIVE=`shuf adjectives.txt | head -n 1`
 ANIMAL=`shuf animals.txt | head -n 1`
-ONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
+CONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
 
 echo CONTAINER-NAME: $CONTAINER_NAME
 
