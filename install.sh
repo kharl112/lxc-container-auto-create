@@ -14,7 +14,7 @@ CONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
 
 echo CONTAINER-NAME: $CONTAINER_NAME
 
-#set -ex
+set -ex
 PROJECT_DIR=`pwd | grep -o "\/[A-Z|a-z|0-9|\-]*" | tail -n 1`
 CONTAINER_HOME=/home/apps
 CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs$CONTAINER_HOME
@@ -22,7 +22,8 @@ CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs$CONTAINER_HOME
 lxc-stop $CONTAINER_NAME || true
 lxc-destroy $CONTAINER_NAME || true
 
-lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r jammy -a amd64
+lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r noble -a amd64
+echo "lxc.apparmor.profile=unconfined" >> /var/lib/lxc/$CONTAINER_NAME/config
 lxc-start $CONTAINER_NAME
 
 mkdir -p $CONTAINER_DIR 
