@@ -16,7 +16,7 @@ echo CONTAINER-NAME: $CONTAINER_NAME
 
 set -ex
 PROJECT_DIR=`pwd | grep -o "\/[A-Z|a-z|0-9|\-]*" | tail -n 1`
-CONTAINER_HOME=/home/apps
+CONTAINER_HOME=/apps
 CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs$CONTAINER_HOME
 
 lxc-stop $CONTAINER_NAME || true
