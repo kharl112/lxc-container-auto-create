@@ -24,6 +24,7 @@ lxc-destroy $CONTAINER_NAME || true
 
 lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r noble -a amd64
 echo "lxc.apparmor.profile=unconfined" >> /var/lib/lxc/$CONTAINER_NAME/config
+echo "lxc.start.auto = 1" >> /var/lib/lxc/$CONTAINER_NAME/config
 lxc-start $CONTAINER_NAME
 
 mkdir -p $CONTAINER_DIR 
