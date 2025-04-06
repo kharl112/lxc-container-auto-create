@@ -1,6 +1,12 @@
 #!/bin/bash
 apt update
-apt install git openssh-server curl -y
+apt install git curl mc tmux -y
+
+git clone https://github.com/kharl112/nvim-plugins-installation.git /apps/nvim-plugins-installation
+
+cd /apps/nvim-plugins-installation
+chmod +x install.sh
+bash install.sh
 
 #add user and pass
 read -p "user for this container:" NEW_USER
