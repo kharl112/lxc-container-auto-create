@@ -31,7 +31,7 @@ mkdir -p $CONTAINER_DIR
 cp $PWD $CONTAINER_DIR -R  
 
 #execute setup
-lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PROJECT_DIR/setup.sh
+lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PROJECT_DIR/setup-kali.sh
 
 EDIR=environments
 OPTIONS=(`find $PWD/$EDIR/ -type d -exec basename {} \; | grep -v $EDIR` 'NONE')
