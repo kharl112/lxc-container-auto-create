@@ -8,8 +8,8 @@ apt install -y lxc
 echo starting time: `date`
 
 #generate container name 
-ADJECTIVE=`shuf adjectives.txt | head -n 1`
-ANIMAL=`shuf animals.txt | head -n 1`
+ADJECTIVE=`shuf ../adjectives.txt | head -n 1`
+ANIMAL=`shuf ../animals.txt | head -n 1`
 CONTAINER_NAME="${1:-$ADJECTIVE-$ANIMAL}"
 
 echo CONTAINER-NAME: $CONTAINER_NAME
@@ -34,7 +34,7 @@ cp $PWD $CONTAINER_DIR -R
 lxc-attach -n $CONTAINER_NAME -- $CONTAINER_HOME/$PROJECT_DIR/setup-kali.sh
 
 EDIR=environments
-OPTIONS=(`find $PWD/$EDIR/ -type d -exec basename {} \; | grep -v $EDIR` 'NONE')
+OPTIONS=(`find $PWD/../$EDIR/ -type d -exec basename {} \; | grep -v $EDIR` 'NONE')
 echo SELECT TECH STACK:
 select opt in "${OPTIONS[@]}"
 do
