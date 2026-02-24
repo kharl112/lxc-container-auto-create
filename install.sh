@@ -22,7 +22,7 @@ CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs$CONTAINER_HOME
 lxc-stop $CONTAINER_NAME || true
 lxc-destroy $CONTAINER_NAME || true
 
-lxc-create -t download -n $CONTAINER_NAME -- -d ubuntu -r noble -a amd64
+lxc-create -t download -n $CONTAINER_NAME -- -d debian -r bookworm -a amd64
 echo "lxc.apparmor.profile=unconfined" >> /var/lib/lxc/$CONTAINER_NAME/config
 echo "lxc.start.auto = 1" >> /var/lib/lxc/$CONTAINER_NAME/config
 lxc-start $CONTAINER_NAME
